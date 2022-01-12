@@ -7,12 +7,11 @@ public:
             f[word[i]-97]++;
         }
         for(int i=0;i<26;i++){
-            if(f[i]>0){
-                ans = f[i];
-                break;
+            if(f[i]){
+                return f[i];
             }
         }
-        return ans;
+        return -1;
     }
     vector<int> numSmallerByFrequency(vector<string>& queries, vector<string>& words) {
         vector<int>count(words.size(),0);
