@@ -3,6 +3,7 @@ public:
     bool isPossible(vector<int>wt,int mid,int days){
         int sum =0, d =1;
         for(int i=0;i<wt.size();i++){
+            if(wt[i]>mid) return false;
             sum+=wt[i];
             if(sum>mid){
                 d++;
