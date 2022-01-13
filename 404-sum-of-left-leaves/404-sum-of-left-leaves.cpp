@@ -12,17 +12,16 @@
 class Solution {
 public:
     int res=0;
-    void leafHelper(TreeNode* root){
-        if(!root) return;
-        if(root->left && !root->left->left && !root->left->right) res+=root->left->val;
-        else{
-            leafHelper(root->left);
+    void leafHelper(TreeNode* root, bool isLeft){
+        if(isLeft && !root->left && !root->right){
+            res+=root->val;
         }
-            leafHelper(root->right);
+        if(root->left) leafHelper(root->left,true);
+        if(root->right) leafHelper(root->right,false);
     }
     int sumOfLeftLeaves(TreeNode* root) {
         if(root==NULL) return 0;
-        leafHelper(root);
+        leafHelper(root,false);
         return res;
     }
 };
