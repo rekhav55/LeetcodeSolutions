@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    int sum=0;
+    int sum;
     int rangeSumBST(TreeNode* root, int low, int high) {
         // if(root==NULL) return 0;
         // if(root->val >= low && root->val<=high){
