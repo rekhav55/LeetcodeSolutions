@@ -25,8 +25,7 @@ public:
                 if(temp->left) q.push(temp->left);
                 if(temp->right) q.push(temp->right);
             }
-            average = sum/sz;
-            ans.push_back(average);
+            ans.push_back(sum/sz);
         }
         return ans;
         
