@@ -11,23 +11,23 @@
  */
 class FindElements {
 public:
-    map<int,int>mp;
+    set<int>mp;
     void findele(TreeNode* root){
         if(root==NULL) return;
             if(root->left){
                 root->left->val=2*root->val + 1;
-                mp[root->left->val]++;
+                mp.insert(root->left->val);
                 findele(root->left);
             }
             if(root->right){
                 root->right->val=2*root->val+2;
-                mp[root->right->val]++;
+                mp.insert(root->right->val);
                 findele(root->right);
             }
     }
     FindElements(TreeNode* root) {
         root->val=0;
-        mp[root->val]++;
+        mp.insert(root->val);
         findele(root);
     }
     
