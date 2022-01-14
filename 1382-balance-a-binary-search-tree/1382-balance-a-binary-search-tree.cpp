@@ -29,7 +29,6 @@ public:
     TreeNode* balanceBST(TreeNode* root) {
         if(!root) return NULL;
         inorder(root);
-        TreeNode* newroot = makeTree(nums,0,nums.size()-1);
-        return newroot;
+        return makeTree(nums,0,nums.size()-1);
     }
 };
