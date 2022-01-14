@@ -11,15 +11,15 @@
  */
 class Solution {
 public:
-    bool isLeaf(TreeNode*root){
-        return !root->left && !root->right;
-    }
+    // bool isLeaf(TreeNode*root){
+    //     return !root->left && !root->right;
+    // }
     TreeNode* removeLeafNodes(TreeNode* root, int target) {
         if(!root) return NULL;
         root->left = removeLeafNodes(root->left,target);
         root->right = removeLeafNodes(root->right,target);
-        if(isLeaf(root)){
-            if(root->val==target) root=NULL;
+        if(root->val==target && !root->left && !root->right){
+            root=NULL;
         }
         return root;
         
