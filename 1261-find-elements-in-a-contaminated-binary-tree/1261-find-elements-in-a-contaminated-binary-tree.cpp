@@ -32,8 +32,7 @@ public:
     }
     
     bool find(int target) {
-        if(mp[target]>0) return true;
-        return false;
+        return mp.find(target)!=mp.end();
     }
 };
 
