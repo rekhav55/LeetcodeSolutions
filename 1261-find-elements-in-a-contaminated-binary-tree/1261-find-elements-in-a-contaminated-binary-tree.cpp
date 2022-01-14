@@ -12,37 +12,23 @@
 class FindElements {
 public:
     map<int,int>mp;
-    void findele(TreeNode* root, bool x){
+    void findele(TreeNode* root){
         if(root==NULL) return;
-        if(x==true){
-            root->val=0;
-            mp[root->val]++;
             if(root->left){
                 root->left->val=2*root->val + 1;
                 mp[root->left->val]++;
-                findele(root->left,false);
+                findele(root->left);
             }
             if(root->right){
                 root->right->val=2*root->val+2;
                 mp[root->right->val]++;
-                findele(root->right,false);
+                findele(root->right);
             }
-        }
-        else{
-            if(root->left){
-                root->left->val=2*root->val + 1;
-                mp[root->left->val]++;
-                findele(root->left,false);
-            }
-            if(root->right){
-                root->right->val=2*root->val+2;
-                mp[root->right->val]++;
-                findele(root->right,false);
-            }
-        }
     }
     FindElements(TreeNode* root) {
-        findele(root,true);
+        root->val=0;
+        mp[root->val]++;
+        findele(root);
     }
     
     bool find(int target) {
