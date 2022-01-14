@@ -19,7 +19,7 @@ public:
         root->left = removeLeafNodes(root->left,target);
         root->right = removeLeafNodes(root->right,target);
         if(root->val==target && !root->left && !root->right){
-            root=NULL;
+            return NULL;
         }
         return root;
         
