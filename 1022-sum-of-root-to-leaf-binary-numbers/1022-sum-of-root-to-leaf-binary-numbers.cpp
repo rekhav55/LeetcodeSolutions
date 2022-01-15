@@ -12,13 +12,16 @@
 class Solution {
 public:
     void helper(TreeNode*root, int &ans, int curr){
-        curr = (curr<<1) | root->val;
+        if(root){
+            curr = (curr<<1) | root->val;
         if(!root->left && !root->right){
             ans+=curr;
             return;
         }
-        if(root->left) helper(root->left,ans,curr);
-        if(root->right) helper(root->right,ans,curr);
+        helper(root->left,ans,curr);
+        helper(root->right,ans,curr);
+        }
+        
     }
     int sumRootToLeaf(TreeNode* root) {
         int ans=0;
