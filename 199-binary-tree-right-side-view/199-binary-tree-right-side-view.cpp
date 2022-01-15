@@ -12,7 +12,7 @@
 class Solution {
 public:
     int maxlevel = 0;
-    void helper(TreeNode* root, vector<int>&res, int currLevel){
+    void helper(TreeNode* &root, vector<int>&res, int currLevel){
         if(root){
             if(currLevel>maxlevel){
                 res.push_back(root->val);
