@@ -11,6 +11,8 @@
  */
 class Solution {
 public:
+    int i=0;
+    bool flag = true;
     void helper(TreeNode* root, vector<int>&tree){
         if(root==NULL) return;
         helper(root->left,tree);
@@ -23,7 +25,6 @@ public:
         if(!root1 || !root2) return false;
         helper(root1,tree1);
         helper(root2,tree2);
-        if(tree1 == tree2) return true;
-        return false;
+        return tree1==tree2;
     }
 };
