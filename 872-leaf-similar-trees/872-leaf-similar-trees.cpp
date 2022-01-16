@@ -25,6 +25,7 @@ public:
         if(!root1 || !root2) return false;
         helper(root1,tree1);
         helper(root2,tree2);
-        return tree1==tree2;
+        if(tree1==tree2) return true;
+        return false;
     }
 };
