@@ -11,17 +11,18 @@
  */
 class Solution {
 public:
-    int sum =0;
-    int helper(TreeNode* root){
+    
+    int helper(TreeNode* root,int &sum){
         if(!root) return 0;
-        int left = helper(root->left);
-        int right = helper(root->right);
+        int left = helper(root->left,sum);
+        int right = helper(root->right,sum);
         sum+=abs(left-right);
         return left+right+root->val;
     }
     int findTilt(TreeNode* root) {
         if(!root) return 0;
-        helper(root);
+        int sum =0;
+        helper(root,sum);
         return sum;
     }
 };
