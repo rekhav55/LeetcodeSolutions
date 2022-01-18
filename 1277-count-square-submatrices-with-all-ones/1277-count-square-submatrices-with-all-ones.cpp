@@ -12,10 +12,7 @@ public:
         {
             for(int j=0;j<m;j++)
             {
-                if(matrix[i][j]==0){
-                    cnt+=0;
-                }
-                else{
+                if(matrix[i][j]==1){
                     if(i==0){
                         cnt+=matrix[i][j];
                     }
