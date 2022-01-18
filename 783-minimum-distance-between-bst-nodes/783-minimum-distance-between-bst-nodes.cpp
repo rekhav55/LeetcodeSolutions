@@ -11,19 +11,19 @@
  */
 class Solution {
 public:
-    void helper(TreeNode* root, int &diff,TreeNode* &prev){
+    int diff=INT_MAX;
+    void helper(TreeNode* root,TreeNode* &prev){
         if(root==NULL) return;
-        helper(root->left,diff,prev);
+        helper(root->left,prev);
         if(prev){
             diff = min(diff, abs(root->val-prev->val));
         }
         prev=root;
-        helper(root->right,diff,prev);
+        helper(root->right,prev);
     }
     int minDiffInBST(TreeNode* root) {
         TreeNode* prev = nullptr;
-        int diff=INT_MAX;
-        helper(root,diff,prev);
+        helper(root,prev);
         return diff;
     }
 };
