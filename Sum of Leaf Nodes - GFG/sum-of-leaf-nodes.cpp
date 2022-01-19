@@ -66,15 +66,18 @@ struct Node
 };*/
 // function should return the sum of all the 
 // leaf nodes of the binary tree 
+void helper(Node* root, int &sum){
+    if(root==NULL) return;
+    helper(root->left,sum);
+    if(root->left==NULL && root->right==NULL) sum+=root->data;
+    helper(root->right,sum);
+}
 int sumLeaf(Node* root)
 {
     // Code here
     if(!root) return 0;
-    int left = sumLeaf(root->left);
-    int right = sumLeaf(root->right);
-    if(root->left==NULL && root->right==NULL){
-        return root->data;
-    }
-    return left+right;
+    int sum=0;
+    helper(root,sum);
+    return sum;
     
 }
