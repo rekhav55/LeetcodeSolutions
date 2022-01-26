@@ -8,11 +8,13 @@ public:
             return;
         }
         if(target<0) return;
-        for(int i = index; i<candidates.size();i++){
-            temp.push_back(candidates[i]);
-            solve(candidates,target-candidates[i],temp,i);
+        if(index==candidates.size()) return;
+        if(candidates[index]<=target){
+            temp.push_back(candidates[index]);
+            solve(candidates,target-candidates[index],temp,index);
             temp.pop_back();
         }
+        solve(candidates,target,temp,index+1);
     }
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<int>temp={};
