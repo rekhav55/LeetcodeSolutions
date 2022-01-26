@@ -11,12 +11,12 @@ public:
             }
             return;
         }
-        string op1=op;
-        string op2=op;
-        op1+="0";
-        op2+="1";
-        solve(op1,st,len);
-        solve(op2,st,len);
+        // string op1=op;
+        // string op2=op;
+        // op1+="0";
+        // op2+="1";
+        solve(op+"0",st,len);
+        solve(op+"1",st,len);
     }
     string findDifferentBinaryString(vector<string>& nums) {
         set<string>st;
