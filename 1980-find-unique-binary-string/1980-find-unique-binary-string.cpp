@@ -2,10 +2,10 @@ class Solution {
 public:
     bool flag=false;
     string f;
-    void solve(string op,set<string>&st,int len){
+    void solve(string op,vector<string>&st,int len){
         if(flag) return;
         if(op.length()==len){
-            if(st.find(op)==st.end()){
+            if(find(st.begin(),st.end(),op)==st.end()){
                 f=op;
                 flag=true;
             }
@@ -23,10 +23,10 @@ public:
         string s = nums[0];
         string op="";
         int len = s.length();
-        for(auto it:nums){
-            st.insert(it);
-        }
-        solve(op,st,len);
+        // for(auto it:nums){
+        //     st.insert(it);
+        // }
+        solve(op,nums,len);
         return f;
     }
 };
