@@ -1,24 +1,48 @@
 class Solution {
 public:
-    void dfs(vector<vector<int>>& ar,vector<int> &vis,int node){
-        vis[node]=1;
-        
-        for(auto child:ar[node]){
-            if(vis[child]==1)continue;
-            else if(vis[child]==0){
-                dfs(ar,vis,child);
+    class unionFind{
+        public:
+        unionFind(int n): parent(n), rank(n){
+            for(int i=0;i<n;i++){
+                parent[i]=i;
+                rank[i]=1;
             }
         }
-    }
-    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
-        vector<vector<int>> ar(n);
-        vector<int> vis(n+1,0);
         
-        for(auto e:edges){
-            ar[e[0]].push_back(e[1]);
-            ar[e[1]].push_back(e[0]);
+        int find(int x){
+            if(x==parent[x]) return x;
+            return find(parent[x]);
         }
-        dfs(ar,vis,source);
-        return vis[destination]==1;
+        
+        bool unionF(int x, int y){
+            int parentX = find(x);
+            int parentY = find(y);
+            if(parentX==parentY) return true;
+            else{
+                if(rank[parentX]>rank[parentY]){
+                    parent[parentY]=parentX;
+                }
+                else if(rank[parentX]<rank[parentY]){
+                    parent[parentX]=parentY;
+                }
+                else{
+                    parent[parentY]=parentX;
+                    rank[parentX]++;
+                }
+                return false;
+            }
+        }
+        
+        private:
+        vector<int>parent;
+        vector<int>rank;
+    };
+    
+    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
+        unionFind uf(n);
+        for(auto it:edges){
+            uf.unionF(it[0],it[1]);
+        }
+        return uf.unionF(source,destination);
     }
 };
