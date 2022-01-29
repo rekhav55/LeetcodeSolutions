@@ -20,9 +20,9 @@ public:
         
         for(auto& neighbor: neighbors){
             if(visited[abs(neighbor)] == 0){
-                if(neighbor>0)count += 1;
-                dfs(abs(neighbor), adjList, visited, count);
                 
+                dfs(abs(neighbor), adjList, visited, count);
+                if(neighbor>0)count += 1;
             }
         }
     }
