@@ -1,28 +1,27 @@
 class Solution {
 public:
     int maximalNetworkRank(int n, vector<vector<int>>& roads) {
-        vector<int>indegree(n,0);
-        vector<vector<int>>graph(n);
-        for(auto edges: roads){
-            indegree[edges[0]]++;
-            indegree[edges[1]]++;
-            graph[edges[0]].push_back(edges[1]);
-            graph[edges[1]].push_back(edges[0]);
+        vector<int> vec(n);    
+        vector<vector<int>> rdNum(n, vector<int>(n,0));    
+        int i,j, sum=0, maxSum = INT_MIN;
+        for(i=0; i<roads.size(); i++)
+        {
+            vec[roads[i][0]] = vec[roads[i][0]]+1;    
+            vec[roads[i][1]] = vec[roads[i][1]]+1;
+            rdNum[roads[i][0]][roads[i][1]] =1;  
+            rdNum[roads[i][1]][roads[i][0]] =1; 
         }
-        int ans = INT_MIN;
-        for(int i=0;i<graph.size();i++){
-            // for(int j=0;j<graph[i].size();j++){
-            //     ans = max(ans, indegree[i]+indegree[graph[i][j]]-1);
-            // }
-            for(int k=0;k<graph.size();k++){
-                if(find(graph[i].begin(),graph[i].end(),k)==graph[i].end() && k!=i){
-                    ans = max(ans, indegree[i]+indegree[k]);
-                }
-                else if(find(graph[i].begin(),graph[i].end(),k)!=graph[i].end() && k!=i){
-                    ans = max(ans, indegree[i]+indegree[k]-1);
-                }
+        
+        for(i=0; i<n; i++)
+        {
+            for(j=i+1; j<n; j++)
+            {
+                sum = vec[i]+vec[j];    
+                if(rdNum[i][j] == 1)       
+                    sum = sum-1;
+                maxSum = max(maxSum, sum); 
             }
-        }
-        return ans;
+        } 
+        return maxSum;
     }
 };
