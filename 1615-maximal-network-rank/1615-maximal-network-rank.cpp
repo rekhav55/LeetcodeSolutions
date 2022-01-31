@@ -11,12 +11,15 @@ public:
         }
         int ans = INT_MIN;
         for(int i=0;i<graph.size();i++){
-            for(int j=0;j<graph[i].size();j++){
-                ans = max(ans, indegree[i]+indegree[graph[i][j]]-1);
-            }
+            // for(int j=0;j<graph[i].size();j++){
+            //     ans = max(ans, indegree[i]+indegree[graph[i][j]]-1);
+            // }
             for(int k=0;k<graph.size();k++){
                 if(find(graph[i].begin(),graph[i].end(),k)==graph[i].end() && k!=i){
                     ans = max(ans, indegree[i]+indegree[k]);
+                }
+                else if(find(graph[i].begin(),graph[i].end(),k)!=graph[i].end() && k!=i){
+                    ans = max(ans, indegree[i]+indegree[k]-1);
                 }
             }
         }
