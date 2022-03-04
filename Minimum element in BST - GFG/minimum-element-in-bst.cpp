@@ -93,15 +93,16 @@ int main() {
 
 
 // Function to find the minimum element in the given BST.
-void helper(Node* root, int &num){
-    if(!root) return;
-    helper(root->left,num);
-    if(num==INT_MIN) num=root->data;
+void inorder(Node* root,vector<int>&ans){
+    if(root==NULL) return ;
+    inorder(root->left,ans);
+    ans.push_back(root->data);
+    inorder(root->right,ans);
 }
 int minValue(Node* root) {
     // Code here
-    if(!root) return 0;
-    int num=INT_MIN;
-    helper(root,num);
-    return num;
+    if(root==NULL) return -1;
+    vector<int>ans;
+    inorder(root,ans);
+    return ans[0];
 }
