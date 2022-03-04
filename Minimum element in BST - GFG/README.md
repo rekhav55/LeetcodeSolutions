@@ -34,6 +34,6 @@ The task is to complete the function <strong>minValue()</strong> which takes roo
 <strong>Expected Auxiliary Space:&nbsp;</strong>O(Height of the BST).</span></p>
 
 <p><span style="font-size:18px"><strong>Constraints:</strong><br>
-1 &lt;= N &lt;= 10<sup>4</sup></span></p>
+0 &lt;= N &lt;= 10<sup>4</sup></span></p>
  <p></p>
             </div>
