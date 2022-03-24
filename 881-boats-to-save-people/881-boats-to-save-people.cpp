@@ -22,8 +22,8 @@ public:
         //     else if(p[i]<=limit && mp.find(p[i])==mp.end()) cnt++;
         // }
         // return cnt;
-        int rem = p.size()-(cnt*2);
-        cnt = cnt+rem;
-        return cnt;
+        // int rem = p.size()-(cnt*2);
+        // cnt = cnt+rem;
+        return cnt+(p.size()-(cnt*2));
     }
 };
