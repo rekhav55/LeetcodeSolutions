@@ -9,7 +9,6 @@ class Solution {
       if(idx==0){
           return target%S[0]==0;
       }
-      if(target==0) return 1;
       if(dp[idx][target]!=-1) return dp[idx][target];
       long long int no_take = find(target,idx-1,S,dp);
       long long int take = 0;
@@ -22,7 +21,21 @@ class Solution {
 
         // code here.
         vector<vector<long long int>>dp(m+1,vector<long long int>(n+1,-1));
-        return find(n,m-1,S,dp);
+        for(int i=0;i<=n;i++){
+            dp[0][i] = (i%S[0]==0);
+        }
+        
+        for(int idx=1;idx<m;idx++){
+            for(int tar=0;tar<=n;tar++){
+                long long int no_take = dp[idx-1][tar];
+                long long int take = 0;
+                if(S[idx]<=tar){
+                    take =dp[idx][tar-S[idx]];
+                }
+                dp[idx][tar]=take+no_take;
+            }
+        }
+        return dp[m-1][n];
     }
 };
 
