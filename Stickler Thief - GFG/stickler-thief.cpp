@@ -20,7 +20,13 @@ class Solution
     {
         // Your code here
         vector<int>dp(n,-1);
-        return find(n-1,arr,dp);
+        dp[0]=arr[0];
+        for(int i=1;i<n;i++){
+            int no_take = dp[i-1];
+            int take = arr[i] + (i-2>=0?dp[i-2]:0);
+            dp[i]=max(take,no_take);
+        }
+        return dp[n-1];
     }
 };
 
