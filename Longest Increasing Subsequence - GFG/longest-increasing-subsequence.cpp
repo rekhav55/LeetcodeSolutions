@@ -9,19 +9,28 @@ class Solution
 {
     public:
     //Function to find length of longest increasing subsequence.
-    int longestSubsequence(int n, int a[])
+    int longestSubsequence(int n, int arr[])
     {
        // your code here
-       vector<int>dp;
-       dp.push_back(a[0]);
-       for(int i=1;i<n;i++){
-           if(a[i]>dp.back()) dp.push_back(a[i]);
-           else{
-               int idx = lower_bound(dp.begin(),dp.end(),a[i])-dp.begin();
-               dp[idx]=a[i];
-           }
-       }
-       return dp.size();
+       vector<int>dp(n,1);
+    //   dp.push_back(a[0]);
+    //   for(int i=1;i<n;i++){
+    //       if(a[i]>dp.back()) dp.push_back(a[i]);
+    //       else{
+    //           int idx = lower_bound(dp.begin(),dp.end(),a[i])-dp.begin();
+    //           dp[idx]=a[i];
+    //       }
+    //   }
+    //   return dp.size();
+    int ans =1;
+   for (int i = 1; i < n; i++)
+            for (int j = 0; j < i; j++)
+                if (arr[i] > arr[j] && dp[i] < dp[j] + 1)
+                    dp[i] = dp[j] + 1;
+    for(int i=0;i<dp.size();i++){
+        ans = max(ans,dp[i]);
+    }
+    return ans;
     }
 };
 
