@@ -26,7 +26,22 @@ class Solution{
     int cutRod(int price[], int n) {
         //code here
         vector<vector<int>>dp(n+1,vector<int>(n+1,-1));
-        return f(price,n-1,n,dp);
+        for(int i=0;i<=n;i++){
+            dp[0][i] = i*price[0];
+        }
+        
+        for(int i=1;i<n;i++){
+            for(int j=0;j<=n;j++){
+                int no = dp[i-1][j];
+                int take = INT_MIN;
+                int rodlength = i+1;
+                if(rodlength<=j){
+                  take = price[i] + dp[i][j-rodlength];
+                }
+                dp[i][j]=max(no,take);
+            }
+        }
+        return dp[n-1][n];
     }
 };
 
