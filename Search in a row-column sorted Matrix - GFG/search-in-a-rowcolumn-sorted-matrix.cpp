@@ -12,18 +12,29 @@ class Solution
     bool search(vector<vector<int> > matrix, int n, int m, int x) 
     {
         // code here 
-        for(int i=0;i<n;i++){
-            if(x>=matrix[i][0] && x<=matrix[i][m-1]){
-                if(x==matrix[i][0] || x==matrix[i][m-1]) return true;
-                int low = 0;
-                int high = m-1;
-                while(low<=high){
-                    int mid = low+(high-low)/2;
-                    if(matrix[i][mid]==x) return true;
-                    else if(matrix[i][mid]>x) high=mid-1;
-                    else low=mid+1;
-                }
+        // for(int i=0;i<n;i++){
+        //     if(x>=matrix[i][0] && x<=matrix[i][m-1]){
+        //         if(x==matrix[i][0] || x==matrix[i][m-1]) return true;
+        //         int low = 0;
+        //         int high = m-1;
+        //         while(low<=high){
+        //             int mid = low+(high-low)/2;
+        //             if(matrix[i][mid]==x) return true;
+        //             else if(matrix[i][mid]>x) high=mid-1;
+        //             else low=mid+1;
+        //         }
+        //     }
+        // }
+        // return false;
+        
+        int i=0; 
+        int j=m-1;
+        while(i<n && j>=0){
+            if(matrix[i][j]==x) return true;
+            else if(matrix[i][j]>x){
+                j--;
             }
+            else i++;
         }
         return false;
     }
