@@ -1,7 +1,6 @@
 class Solution {
 public:
     int f(int r, int c, vector<vector<int>>&matrix,vector<vector<int>>&dp){
-        if(r<0 || c<0 || c>=matrix[0].size()) return 1e9;
         if(r==matrix.size()-1) return matrix[r][c];
         if(dp[r][c]!=-1) return dp[r][c];
         int ans = INT_MAX;
