@@ -37,7 +37,7 @@ class Solution
         
         for(int i=0;i<n;i++){
             int idx = temp[i].second;
-            if(wt+arr[idx].weight<W){
+            if(wt+arr[idx].weight<=W){
                 wt+=arr[idx].weight;
                 profit+=arr[idx].value;
             }
