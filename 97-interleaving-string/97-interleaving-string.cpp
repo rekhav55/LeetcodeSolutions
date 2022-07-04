@@ -10,7 +10,7 @@ public:
         else if(s3[k]==s2[j] && s3[k]!=s1[i]){
             return dp[i][j]=f(i,j+1,k+1,s1,s2,s3,dp);
         }
-        else if(s3[k]==s1[i] && s3[k]==s2[j] && j<s2.size() && i<s1.size()){
+        else if(s3[k]==s1[i] && s3[k]==s2[j]){
             return dp[i][j]=f(i,j+1,k+1,s1,s2,s3,dp) || f(i+1,j,k+1,s1,s2,s3,dp);
         }
         return dp[i][j]=false;
