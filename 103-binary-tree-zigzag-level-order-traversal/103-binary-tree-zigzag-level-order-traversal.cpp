@@ -12,30 +12,61 @@
 class Solution {
 public:
     vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
-        if(!root) return {};
-        bool leftToRight = true; vector<vector<int>> res;
-        deque<TreeNode*> q;
-        q.push_back(root);
-        while(q.size()){
-            int n = q.size();
-            vector<int> row;
-            for(int i=0;i<n;i++){
-                if(leftToRight) {
-                    TreeNode* curr = q.front();q.pop_front();
-                    row.push_back(curr->val);
-                    if(curr->left)q.push_back(curr->left);
-                    if(curr->right)q.push_back(curr->right);
-                }else{
-                    TreeNode* curr = q.back();q.pop_back();
-                    row.push_back(curr->val);
-                    if(curr->right)q.push_front(curr->right);
-                    if(curr->left)q.push_front(curr->left);
-                }
-            }
-            res.push_back(row);
-            leftToRight=!leftToRight;
+        stack<TreeNode*> s;
+        queue<TreeNode*> q;
+        vector<vector<int>> ans;
+        if(root==NULL){
+            return ans;
         }
-        return res;
+        int i = 0;
+        q.push(root);
+        vector<int> v1;
+        v1.push_back(root->val);
+        ans.push_back(v1);
+        i++;
+        while(!q.empty()){
+            
+            int n =  q.size();
+            vector<int> temp;
+           
+            while(n--){
+                 auto it = q.front();
+                q.pop();
+                
+                if(i%2==0){
+                    if(it->left!=NULL){
+                        temp.push_back(it->left->val);
+                        q.push(it->left);
+                    }
+                    if(it->right!=NULL){
+                        temp.push_back(it->right->val);
+                        q.push(it->right);
+                    }
+                }
+                else{
+                    
+                      if(it->left!=NULL){
+                        s.push(it->left);
+                        q.push(it->left);
+                    }
+                    if(it->right!=NULL){
+                        s.push(it->right);
+                        q.push(it->right);
+                    }
+                }
+              
+                
+            }
+              while(!s.empty()){
+                    temp.push_back(s.top()->val);
+                    s.pop();
+                }
+            if(temp.size()>0)
+            ans.push_back(temp);
+            ++i;
+        }
+        return ans;
+        
         
     }
 };
